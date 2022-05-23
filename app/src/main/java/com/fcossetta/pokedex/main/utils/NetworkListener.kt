@@ -5,8 +5,8 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.net.ConnectivityManager
-import com.fcossetta.pokedex.data.NetworkState
-import com.fcossetta.pokedex.data.PokemonViewModel
+import com.fcossetta.pokedex.main.data.NetworkState
+import com.fcossetta.pokedex.main.data.PokemonViewModel
 
 class NetworkListener(private val context: Context, val pokemonViewModel: PokemonViewModel) {
     private var receiver: BroadcastReceiver? = null
@@ -21,7 +21,7 @@ class NetworkListener(private val context: Context, val pokemonViewModel: Pokemo
             receiver = object : BroadcastReceiver() {
                 override fun onReceive(context: Context, intent: Intent) {
                     online = cm.activeNetworkInfo != null
-                    pokemonViewModel.action {  NetworkState.NetworkChanged(online)}
+//                    pokemonViewModel.action { setState { NetworkState.NetworkChanged(online) } }
                 }
             }
             context.registerReceiver(receiver, filter)

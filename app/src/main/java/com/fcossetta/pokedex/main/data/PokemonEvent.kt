@@ -1,4 +1,4 @@
-package com.fcossetta.pokedex.data
+package com.fcossetta.pokedex.main.data
 
 import androidx.paging.PagingData
 import com.fcossetta.pokedex.main.data.model.Pokemon

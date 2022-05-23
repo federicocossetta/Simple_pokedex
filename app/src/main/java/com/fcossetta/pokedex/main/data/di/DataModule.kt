@@ -1,7 +1,7 @@
-package com.fcossetta.pokedex.data.di
+package com.fcossetta.pokedex.main.data.di
 
 import android.content.Context
-import com.fcossetta.pokedex.data.api.PokeService
+import com.fcossetta.pokedex.main.data.api.PokeService
 import com.fcossetta.pokedex.main.utils.Constants
 import dagger.Module
 import dagger.Provides

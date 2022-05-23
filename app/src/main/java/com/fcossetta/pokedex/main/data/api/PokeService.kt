@@ -1,4 +1,4 @@
-package com.fcossetta.pokedex.data.api
+package com.fcossetta.pokedex.main.data.api
 
 import okhttp3.ResponseBody
 import retrofit2.Call

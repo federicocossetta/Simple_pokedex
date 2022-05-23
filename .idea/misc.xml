@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Federico/Documents/Simple_pokedex/app/src/main/res/drawable/ic_search_foreground.xml" value="0.172" />
+        <entry key="..\:/Users/Federico/Documents/Simple_pokedex/app/src/main/res/layout/fragment_item_list.xml" value="0.3484375" />
+        <entry key="..\:/Users/Federico/Documents/Simple_pokedex/app/src/main/res/layout/fragment_loading.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/Federico/Documents/Simple_pokedex/app/src/main/res/layout/fragment_pokemon_list.xml" value="0.3625" />
+        <entry key="..\:/Users/Federico/Documents/Simple_pokedex/app/src/main/res/layout/fragment_pokemon_list_list.xml" value="0.3484375" />
+        <entry key="..\:/Users/Federico/Documents/Simple_pokedex/app/src/main/res/layout/fragment_s_imple_pokemon_list.xml" value="0.2921875" />
+        <entry key="..\:/Users/Federico/Documents/Simple_pokedex/app/src/main/res/layout/fragment_s_imple_pokemon_list_list.xml" value="0.19479166666666667" />
+        <entry key="..\:/Users/Federico/Documents/Simple_pokedex/app/src/main/res/layout/pokemon_item_list.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/Federico/Documents/Simple_pokedex/app/src/main/res/layout/pokemon_search_fragment.xml" value="0.22647058823529412" />
+        <entry key="..\:/Users/Federico/Documents/Simple_pokedex/app/src/main/res/mipmap-anydpi-v26/ic_search_round.xml" value="0.172" />
+      </map>
+    </option>
+  </component>
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_16_PREVIEW" project-jdk-name="16" project-jdk-type="JavaSDK" />
+</project>

@@ -1,4 +1,4 @@
-package com.fcossetta.pokedex.data.api
+package com.fcossetta.pokedex.main.data.api
 
 class ApiHelper(private val apiService: PokeService) {
 

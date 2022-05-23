@@ -1,4 +1,4 @@
-package com.fcossetta.pokedex.data.api
+package com.fcossetta.pokedex.main.data.api
 
 import com.fcossetta.pokedex.main.utils.Constants
 import okhttp3.OkHttpClient
