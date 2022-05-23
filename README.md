@@ -3,6 +3,6 @@ Implementation of simple pokedx using
 * Kotlin
 * Uniflow
 * Jetpack
-* Koin
+* Hilt for DI
 * Retrofit & OKhttp3
 * Moshi and Glide

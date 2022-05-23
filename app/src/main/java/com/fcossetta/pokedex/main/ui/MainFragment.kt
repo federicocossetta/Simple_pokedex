@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.PagingData
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.fcossetta.pokedex.R
 import com.fcossetta.pokedex.databinding.MainFragmentBinding
 import com.fcossetta.pokedex.main.data.PokemonEvent
@@ -41,7 +43,9 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         adapter.context = requireContext()
-        _binding.recyclerView.adapter = adapter
+        val findViewById = view.findViewById<RecyclerView>(R.id.recycler_view)
+        findViewById.layoutManager = LinearLayoutManager(context)
+        findViewById.adapter = adapter
         onEvents(viewModel) {
             when (it) {
                 is PokemonEvent.PokemonListFound -> {
