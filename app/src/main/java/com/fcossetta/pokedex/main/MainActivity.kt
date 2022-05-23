@@ -34,7 +34,6 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.container) as NavHostFragment
         navController = navHostFragment.navController
         networkListener = NetworkListener(applicationContext, viewModel)
-        viewModel.getPokemonList(100)
         onStates(viewModel) { state ->
             if (networkListener.online) {
                 when (state) {

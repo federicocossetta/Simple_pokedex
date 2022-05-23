@@ -21,7 +21,7 @@ class NetworkListener(private val context: Context, val pokemonViewModel: Pokemo
                 override fun onReceive(context: Context, intent: Intent) {
                     online = cm.activeNetworkInfo != null
                     //TODO
-//                    pokemonViewModel.action { setState { NetworkState.NetworkChanged(online) } }
+                    pokemonViewModel.setOnline(online)
                 }
             }
             context.registerReceiver(receiver, filter)

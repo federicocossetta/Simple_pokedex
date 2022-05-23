@@ -19,8 +19,6 @@ class PokemonAdapter  constructor( val pokemonViewModel: PokemonViewModel) :
     PagingDataAdapter<SimplePokemon, PokemonAdapter.MyViewHolder>(DiffUtilCallBack()) {
     lateinit var context: Context
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.pokemon_item_list, parent, false)
 
         val binding = PokemonItemListBinding
             .inflate(LayoutInflater.from(parent.context), parent, false)

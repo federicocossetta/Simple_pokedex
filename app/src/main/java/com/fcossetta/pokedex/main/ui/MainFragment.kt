@@ -36,19 +36,17 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        val inflate = inflater.inflate(R.layout.main_fragment, container, false)
         _binding = MainFragmentBinding.inflate(inflater, container, false)
         adapter = PokemonAdapter(viewModel)
-        return inflate
+        return _binding.root
     }
 
     @ExperimentalCoroutinesApi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         adapter.context = requireContext()
-        val findViewById = view.findViewById<RecyclerView>(R.id.recycler_view)
-        findViewById.layoutManager = LinearLayoutManager(context)
-        findViewById.adapter = adapter
+        _binding.recyclerView.layoutManager = LinearLayoutManager(context)
+        _binding.recyclerView.adapter = adapter
         onEvents(viewModel) {
             when (it) {
                 is PokemonEvent.PokemonListFound -> {

@@ -55,6 +55,9 @@ class PokemonViewModel @Inject constructor(private val api: PokeService) :
             (PokemonEvent.PokemonListFound(pager.flow.cachedIn(viewModelScope)))
         }
     }
+    fun setOnline(online: Boolean) = action {
+        setState { NetworkState.NetworkChanged(online)  }
+    }
 
 }
 
