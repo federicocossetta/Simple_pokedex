@@ -12,8 +12,10 @@ import com.fcossetta.pokedex.databinding.PokemonItemListBinding
 import com.fcossetta.pokedex.main.MainActivity
 import com.fcossetta.pokedex.main.data.PokemonViewModel
 import com.fcossetta.pokedex.main.data.model.SimplePokemon
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-class PokemonAdapter() :
+class PokemonAdapter  constructor( val pokemonViewModel: PokemonViewModel) :
     PagingDataAdapter<SimplePokemon, PokemonAdapter.MyViewHolder>(DiffUtilCallBack()) {
     lateinit var context: Context
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -47,17 +49,8 @@ class PokemonAdapter() :
             itemView.setOnClickListener {
                 if (pokemon.url != null && context != null) {
 
-                    val pokemonViewModel =
-                        ViewModelProviders.of(context as MainActivity)[PokemonViewModel::class.java]
-                    pokemonViewModel.action {
-                        TODO(
-//                        sendEvent {
-//                            PokemonEvent.PokemonDetailRequest(
-//                                pokemon.url
-//                            )
-//                        }
-                        )
-                    }
+                    pokemonViewModel.findPokemon(pokemon.url)
+
                 }
             }
         }

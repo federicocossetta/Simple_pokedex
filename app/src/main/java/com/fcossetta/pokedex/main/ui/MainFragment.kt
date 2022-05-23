@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavGraph
+import androidx.navigation.Navigation
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -28,7 +30,7 @@ class MainFragment : Fragment() {
     val TAG = "TEST"
 
     private val viewModel: PokemonViewModel by activityViewModels()
-    private val adapter = PokemonAdapter()
+    private lateinit var adapter: PokemonAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,6 +38,7 @@ class MainFragment : Fragment() {
     ): View {
         val inflate = inflater.inflate(R.layout.main_fragment, container, false)
         _binding = MainFragmentBinding.inflate(inflater, container, false)
+        adapter = PokemonAdapter(viewModel)
         return inflate
     }
 
@@ -54,6 +57,11 @@ class MainFragment : Fragment() {
                             adapter.submitData(pokemons)
                         }
                     }
+                }
+                is PokemonEvent.PokemonFound -> {
+                    val mainToPokemonDetail =
+                        MainFragmentDirections.mainToPokemonDetail(it.pokemon)
+                    Navigation.findNavController(view).navigate(mainToPokemonDetail);
                 }
             }
         }

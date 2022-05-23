@@ -8,13 +8,13 @@
         android:id="@+id/loadingFragment"
         android:name="com.fcossetta.pokedex.main.ui.LoadingFragment"
         android:label="loadingFragment"
-        tools:layout="@layout/fragment_loading" >
+        tools:layout="@layout/fragment_loading">
         <action
             android:id="@+id/action_loading_to_main"
             app:destination="@id/mainFragment"
             app:launchSingleTop="true"
             app:popUpTo="@+id/nav_graph"
-            app:popUpToInclusive="true"/>
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/mainFragment"
@@ -24,17 +24,22 @@
         <action
             android:id="@+id/main_to_pokemon_detail"
             app:destination="@id/pokeDetailFragment">
+            <argument
+                android:name="pokemon"
+                app:argType="com.fcossetta.pokedex.main.data.model.Pokemon" />
         </action>
     </fragment>
     <fragment
         android:id="@+id/pokeDetailFragment"
         android:name="com.fcossetta.pokedex.main.ui.PokeDetailFragment"
         android:label="PokeDetailFragment">
+        <argument
+            android:name="pokemon"
+            app:argType="com.fcossetta.pokedex.main.data.model.Pokemon" />
 
         <action
             android:id="@+id/returnToHome"
-            app:popUpTo="@+id/mainFragment"
-            app:popUpToInclusive="true"
-            app:destination="@id/mainFragment" />
+            app:destination="@id/mainFragment"
+            app:popUpTo="@+id/mainFragment" />
     </fragment>
 </navigation>

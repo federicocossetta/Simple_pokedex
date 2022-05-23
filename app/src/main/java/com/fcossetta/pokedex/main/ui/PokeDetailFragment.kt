@@ -12,20 +12,24 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.RequestManager
 import com.fcossetta.pokedex.R
 import com.fcossetta.pokedex.databinding.FragmentPokemonDetailBinding
-import com.fcossetta.pokedex.main.data.PokemonEvent
 import com.fcossetta.pokedex.main.data.PokemonViewModel
 import com.fcossetta.pokedex.main.data.model.Pokemon
 import com.fcossetta.pokedex.main.data.model.StatInfo
 import com.fcossetta.pokedex.main.data.model.Type
 import dagger.hilt.android.AndroidEntryPoint
-import io.uniflow.android.livedata.onEvents
 import java.util.*
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class PokeDetailFragment : Fragment() {
+    val pokeDetailFragmentArgs: PokeDetailFragmentArgs by navArgs()
     private lateinit var _binding: FragmentPokemonDetailBinding
+    @Inject
+    lateinit var requestManager: RequestManager
 
     //    private var _binding: Any
     private val viewModel: PokemonViewModel by activityViewModels()
@@ -35,21 +39,14 @@ class PokeDetailFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        val inflate = inflater.inflate(R.layout.fragment_pokemon_detail, container, false)
         _binding = FragmentPokemonDetailBinding.inflate(inflater, container, false)
 
-        return inflate
+        return _binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        onEvents(viewModel) { it ->
-            when (it) {
-                is PokemonEvent.PokemonFound -> {
-                    updatePokemonInformation(it.pokemon, context)
-                }
-            }
-        }
+        updatePokemonInformation(pokeDetailFragmentArgs.pokemon, context)
 
 
     }
@@ -60,9 +57,9 @@ class PokeDetailFragment : Fragment() {
             _binding.pokemonName.text = pokemon.name?.capitalize(Locale.ROOT)
             val padStart = pokemon.id.toString().padStart(3, '0')
             _binding.pokemonNumber.text = "#$padStart"
-//            Glide.with(context)
-//                .load(pokemon.sprites?.front_default)
-//                .into(_binding.pokemonImage)
+            requestManager
+                .load(pokemon.sprites?.front_default)
+                .into(_binding.pokemonImage)
             if (pokemon.stats != null) {
                 for (item: StatInfo in pokemon.stats) {
                     val name: String? = item.stat!!.name
@@ -71,7 +68,8 @@ class PokeDetailFragment : Fragment() {
                         "attack" -> _binding.attack.text = item.baseStats?.toString()
                         "defense" -> _binding.defense.text = item.baseStats?.toString()
                         "special-attack" -> _binding.specialAttack.text = item.baseStats?.toString()
-                        "special-defense" -> _binding.specialDefense.text = item.baseStats?.toString()
+                        "special-defense" -> _binding.specialDefense.text =
+                            item.baseStats?.toString()
                         "speed" -> _binding.speed.text = item.baseStats?.toString()
                     }
                 }

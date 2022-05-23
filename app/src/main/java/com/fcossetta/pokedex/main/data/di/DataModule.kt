@@ -1,6 +1,8 @@
 package com.fcossetta.pokedex.main.data.di
 
 import android.content.Context
+import com.bumptech.glide.Glide
+import com.bumptech.glide.RequestManager
 import com.fcossetta.pokedex.main.data.api.PokeService
 import com.fcossetta.pokedex.main.utils.Constants
 import dagger.Module
@@ -28,6 +30,11 @@ class DataModule {
             .baseUrl(Constants.BASE_URL)
             .client(client)
             .build()
+    }
+    @Provides
+    @Singleton
+    fun provideGlide(@ApplicationContext context: Context?): RequestManager {
+        return Glide.with(context!!)
     }
 
     @Provides

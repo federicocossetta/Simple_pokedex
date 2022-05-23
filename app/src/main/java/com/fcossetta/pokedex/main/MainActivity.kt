@@ -49,15 +49,6 @@ class MainActivity : AppCompatActivity() {
         }
         onEvents(viewModel) { it ->
             when (it) {
-                is PokemonEvent.PokemonFound -> {
-                    val mainToPokemonDetail =
-                        MainFragmentDirections.mainToPokemonDetail()
-                    navController.navigate(mainToPokemonDetail)
-                }
-                is PokemonEvent.PokemonDetailRequest -> {
-
-                    viewModel.findPokemon(it.pokemonUrl)
-                }
                 is PokemonEvent.PokemonListFound -> {
                     val mainToPokemonDetail =
                         LoadingFragmentDirections.actionLoadingToMain()
