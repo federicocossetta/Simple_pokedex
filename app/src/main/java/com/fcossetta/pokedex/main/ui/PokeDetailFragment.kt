@@ -14,7 +14,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.RequestManager
-import com.fcossetta.pokedex.R
 import com.fcossetta.pokedex.databinding.FragmentPokemonDetailBinding
 import com.fcossetta.pokedex.main.data.PokemonViewModel
 import com.fcossetta.pokedex.main.data.model.Pokemon
@@ -38,7 +37,7 @@ class PokeDetailFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
         _binding = FragmentPokemonDetailBinding.inflate(inflater, container, false)
 
         return _binding.root

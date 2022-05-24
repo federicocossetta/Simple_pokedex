@@ -11,7 +11,6 @@ import com.fcossetta.pokedex.main.data.NetworkState
 import com.fcossetta.pokedex.main.data.PokemonEvent
 import com.fcossetta.pokedex.main.data.PokemonViewModel
 import com.fcossetta.pokedex.main.ui.LoadingFragmentDirections
-import com.fcossetta.pokedex.main.ui.MainFragmentDirections
 import com.fcossetta.pokedex.main.utils.NetworkListener
 import dagger.hilt.android.AndroidEntryPoint
 import io.uniflow.android.livedata.onEvents

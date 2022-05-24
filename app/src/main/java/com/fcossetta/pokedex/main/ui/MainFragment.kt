@@ -24,7 +24,6 @@ import kotlinx.coroutines.launch
 class MainFragment : Fragment() {
     private lateinit var _binding: MainFragmentBinding
     private lateinit var results: PagingData<SimplePokemon>
-    val TAG = "TEST"
 
     private val viewModel: PokemonViewModel by activityViewModels()
     private lateinit var adapter: PokemonAdapter
