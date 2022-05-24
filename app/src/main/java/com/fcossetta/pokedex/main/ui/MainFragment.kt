@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
+import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fcossetta.pokedex.databinding.MainFragmentBinding
@@ -18,6 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import io.uniflow.android.livedata.onEvents
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -42,14 +45,17 @@ class MainFragment : Fragment() {
     @ExperimentalCoroutinesApi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if(_binding.recyclerView.adapter == null) {
+        if (_binding.recyclerView.adapter == null) {
             _binding.recyclerView.layoutManager = LinearLayoutManager(context)
             _binding.recyclerView.adapter = adapter
+            adapter.addLoadStateListener { combinedLoadStates ->
+                _binding.progressBar.isVisible = combinedLoadStates.refresh is LoadState.Loading
+            }
         }
         onEvents(viewModel) {
             when (it) {
                 is PokemonEvent.PokemonListFound -> {
-                    lifecycleScope.launch {
+                    lifecycleScope.launchWhenCreated {
                         it.pokemon.collect() { pokemons ->
                             adapter.submitData(pokemons)
                         }

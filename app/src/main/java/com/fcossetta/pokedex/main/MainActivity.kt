@@ -15,6 +15,10 @@ import com.fcossetta.pokedex.main.utils.NetworkListener
 import dagger.hilt.android.AndroidEntryPoint
 import io.uniflow.android.livedata.onEvents
 import io.uniflow.android.livedata.onStates
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import java.util.concurrent.CompletableFuture
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -37,7 +41,11 @@ class MainActivity : AppCompatActivity() {
             if (networkListener.online) {
                 when (state) {
                     is NetworkState.NetworkChanged -> if (state.online) {
-                        viewModel.getPokemonList(100)
+                        GlobalScope.launch {
+                            delay(2000)
+                            viewModel.getPokemonList(100)
+
+                        }
                     }
                 }
             } else {

@@ -12,6 +12,8 @@
         <action
             android:id="@+id/action_loading_to_main"
             app:destination="@id/mainFragment"
+            app:exitAnim="@anim/fade_out"
+            app:popExitAnim="@anim/fade_out"
             app:launchSingleTop="true"
             app:popUpTo="@+id/nav_graph"
             app:popUpToInclusive="true" />
@@ -20,20 +22,30 @@
         android:id="@+id/mainFragment"
         android:name="com.fcossetta.pokedex.main.ui.MainFragment"
         android:label="main_fragment"
+
+        app:enterAnim="@anim/fade_in"
+        app:exitAnim="@anim/fade_out"
+        app:popExitAnim="@anim/fade_out"
         tools:layout="@layout/main_fragment">
         <action
             android:id="@+id/main_to_pokemon_detail"
-            app:popUpToSaveState="true"
-            app:destination="@id/pokeDetailFragment">
+            app:destination="@id/pokeDetailFragment"
+            app:enterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/fade_out"
+            app:exitAnim="@anim/fade_out"
+            app:popUpToSaveState="true">
             <argument
                 android:name="pokemon"
                 app:argType="com.fcossetta.pokedex.main.data.model.Pokemon" />
         </action>
     </fragment>
     <fragment
+
         android:id="@+id/pokeDetailFragment"
         android:name="com.fcossetta.pokedex.main.ui.PokeDetailFragment"
-        android:label="PokeDetailFragment">
+        android:label="PokeDetailFragment"
+        app:enterAnim="@anim/slide_in"
+        app:exitAnim="@anim/fade_out">
         <argument
             android:name="pokemon"
             app:argType="com.fcossetta.pokedex.main.data.model.Pokemon" />
