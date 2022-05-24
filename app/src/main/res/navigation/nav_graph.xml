@@ -23,6 +23,7 @@
         tools:layout="@layout/main_fragment">
         <action
             android:id="@+id/main_to_pokemon_detail"
+            app:popUpToSaveState="true"
             app:destination="@id/pokeDetailFragment">
             <argument
                 android:name="pokemon"
@@ -36,10 +37,5 @@
         <argument
             android:name="pokemon"
             app:argType="com.fcossetta.pokedex.main.data.model.Pokemon" />
-
-        <action
-            android:id="@+id/returnToHome"
-            app:destination="@id/mainFragment"
-            app:popUpTo="@+id/mainFragment" />
     </fragment>
 </navigation>

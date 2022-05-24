@@ -7,12 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.NavGraph
 import androidx.navigation.Navigation
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.fcossetta.pokedex.R
 import com.fcossetta.pokedex.databinding.MainFragmentBinding
 import com.fcossetta.pokedex.main.data.PokemonEvent
 import com.fcossetta.pokedex.main.data.PokemonViewModel
@@ -36,17 +33,20 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        _binding = MainFragmentBinding.inflate(inflater, container, false)
-        adapter = PokemonAdapter(viewModel)
+        if (!::_binding.isInitialized) {
+            _binding = MainFragmentBinding.inflate(inflater, container, false)
+            adapter = PokemonAdapter(viewModel)
+        }
         return _binding.root
     }
 
     @ExperimentalCoroutinesApi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter.context = requireContext()
-        _binding.recyclerView.layoutManager = LinearLayoutManager(context)
-        _binding.recyclerView.adapter = adapter
+        if(_binding.recyclerView.adapter == null) {
+            _binding.recyclerView.layoutManager = LinearLayoutManager(context)
+            _binding.recyclerView.adapter = adapter
+        }
         onEvents(viewModel) {
             when (it) {
                 is PokemonEvent.PokemonListFound -> {
@@ -57,9 +57,11 @@ class MainFragment : Fragment() {
                     }
                 }
                 is PokemonEvent.PokemonFound -> {
-                    val mainToPokemonDetail =
-                        MainFragmentDirections.mainToPokemonDetail(it.pokemon)
-                    Navigation.findNavController(view).navigate(mainToPokemonDetail);
+                    lifecycleScope.launch {
+                        val mainToPokemonDetail =
+                            MainFragmentDirections.mainToPokemonDetail(it.pokemon)
+                        Navigation.findNavController(view).navigate(mainToPokemonDetail);
+                    }
                 }
             }
         }
